@@ -1,4 +1,6 @@
 $(document).ready(function () {
+
+// Get and display all tasks
   
 var getAndDislayAllTasks = function () {
   $.ajax({
@@ -8,7 +10,7 @@ var getAndDislayAllTasks = function () {
     success: function (response, textStatus) {
       $('#todo-list').empty();
       response.tasks.forEach(function (task) {
-        $('#todo-list').append('<div class="row"><p class="col-xs-8">' + task.content + '</p><button class="delete" data-id="' + task.id + '">Delete</button><input type="checkbox" class="mark-complete" data-id="' + task.id + '"' + (task.completed ? 'checked' : '') + '></div>');
+        $('#todo-list').append('<div class="row" data-completed="' + task.completed + '"><p class="col-xs-8">' + task.content + '</p><button class="delete" data-id="' + task.id + '">Delete</button><input type="checkbox" class="mark-complete" data-id="' + task.id + '"' + (task.completed ? 'checked' : '') + '></div>');
       });
     },
     error: function (request, textStatus, errorMessage) {
@@ -16,6 +18,8 @@ var getAndDislayAllTasks = function () {
     }
   });  
 };
+
+// Create tasks
 
   var createTask = function () {
     $.ajax({
@@ -43,6 +47,8 @@ var getAndDislayAllTasks = function () {
     createTask();
   });
 
+ // Delete tasks
+  
   var deleteTask = function (id) {
     $.ajax({
       type: 'DELETE',
@@ -59,6 +65,8 @@ var getAndDislayAllTasks = function () {
   $(document).on('click', '.delete', function() {
     deleteTask($(this).data('id'));
   });
+
+// Mark tasks either completed or active based on user selection
 
   var markTaskComplete = function (id) {
     $.ajax({
@@ -93,10 +101,25 @@ var getAndDislayAllTasks = function () {
     } else {
       markTaskActive($(this).data('id'));
     }
+  });
+
+// filter displayed tasks based on data-completed attribute
+  
+  $(document).on('click', '#btnComp', function () {    
+    $('[data-completed="false"]').hide();
+    $('[data-completed="true"]').show();
+  });
+
+  $(document).on('click', '#btnAct', function () {
+    $('[data-completed="true"]').hide();
+    $('[data-completed="false"]').show();
+  });
+  
+  $(document).on('click', '#btnAll', function () {
+    $('[data-completed="true"]').show();
+    $('[data-completed="false"]').show();
   });  
 
-  getAndDislayAllTasks();
-
-  
+getAndDislayAllTasks();  
 
 });
