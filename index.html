@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width">
   <title>To Do List</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Lemonada:wght@300;400;600&family=Ubuntu:ital,wght@0,300;0,400;1,300;1,400&display=swap"
+  rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <link href="style.css" rel="stylesheet" type="text/css" />
   <script src="app.js"></script>
@@ -15,19 +17,39 @@
   <div class="container">
     <div class="row">
       <div class="col-xs-12">
-        <h2>To Do List</h2>
-        <div id="todo-list">
+        <h2 id="title" class="text-center">Keep track of your tasks</h2>
+        <div class="row">
+          <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-3 col-lg-6 col-large-offset-4">
+            <div id="todo-list-wrapper">
+              <form id="create-task">
+                <input class="form-control" id="new-task-content" type="text" placeholder="What should I do next?" required/>
+                <button class="btn btn-primary btn-block">Add a task</button>
+              </form>
+              <div id="todo-list">
+              </div>
+              <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-secondary">
+                  <input type="radio" name="options" id="btnAll"> All
+                </label>
+                <label class="btn btn-secondary">
+                  <input type="radio" name="options" id="btnComp"> Completed
+                </label>
+                <label class="btn btn-secondary">
+                  <input type="radio" name="options" id="btnAct"> Active
+                </label>
+              </div>
+            <!-- <div id="toggler">
+              <button id="btnAll">All</button>
+              <button id="btnComp">Completed</button>
+              <button id="btnAct">Active</button>
+            </div> -->
+            </div>
+          </div>
         </div>
-        <form id="create-task">
-          <input id="new-task-content" type="text" placeholder="new task" required/>
-          <button>Create</button>
-        </form>
+
+
       </div>
-      <div class="col-xs-6">
-        <button id="btnAll">All</button>
-        <button id="btnComp">Completed</button>
-        <button id="btnAct">Active</button>
-      </div>
+
     </div>
   </div>
 </body>

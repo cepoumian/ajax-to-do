@@ -10,7 +10,7 @@ var getAndDislayAllTasks = function () {
     success: function (response, textStatus) {
       $('#todo-list').empty();
       response.tasks.forEach(function (task) {
-        $('#todo-list').append('<div class="row" data-completed="' + task.completed + '"><p class="col-xs-8">' + task.content + '</p><button class="delete" data-id="' + task.id + '">Delete</button><input type="checkbox" class="mark-complete" data-id="' + task.id + '"' + (task.completed ? 'checked' : '') + '></div>');
+        $('#todo-list').append('<div class="row task" data-completed="' + task.completed + '"><p class="col-xs-8">' + task.content + '</p><button class="delete btn btn-danger" data-id="' + task.id + '">Delete</button><input type="checkbox" class="mark-complete" data-id="' + task.id + '"' + (task.completed ? 'checked' : '') + '></div>');
       });
     },
     error: function (request, textStatus, errorMessage) {
